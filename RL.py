@@ -110,7 +110,9 @@ if __name__ == '__main__':
     player = QLPlayer(state, ['up', 'down', 'right', 'left'])
     done = True
 
-    for i in tqdm(range(1000000)):
+    epsodios = 100000
+
+    for i in tqdm(range(epsodios)):
         while done:
             done = player.ql()
             # print(player.state)
@@ -120,10 +122,10 @@ if __name__ == '__main__':
         player.newgame(state)
         done = True
 
-    with open('model.pickle', 'wb') as f:
+    with open(str(epsodios)+'-model.pickle', 'wb') as f:
         pickle.dump(player, f)
 
-    with open('model.pickle', 'rb') as f:
+    with open(str(epsodios)+'-model.pickle', 'rb') as f:
         player = pickle.load(f)
 
     while done:
